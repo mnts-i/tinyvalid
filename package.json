@@ -1,0 +1,42 @@
+{
+	"name": "tinyvalid",
+	"version": "1.1.0",
+	"description": "A simple validation library written in Typescript",
+	"files": [
+		"dist/**/*"
+	],
+	"main": "dist/tinyvalid.js",
+	"types": "dist/tinyvalid.d.ts",
+	"scripts": {
+		"test": "jest --config jestconfig.json",
+		"build": "tsc",
+		"lint": "eslint . --ext .ts",
+		"prepare": "npm run build",
+		"prepublishOnly": "npm test && npm run lint",
+		"preversion": "npm run lint"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mnts-i/tinyvalid.git"
+	},
+	"keywords": [
+		"typescript",
+		"validation",
+		"javascript"
+	],
+	"author": "Mantios Ioakeim",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/mnts-i/tinyvalid/issues"
+	},
+	"homepage": "https://github.com/mnts-i/tinyvalid#readme",
+	"devDependencies": {
+		"@types/jest": "^25.2.3",
+		"@typescript-eslint/eslint-plugin": "^4.9.1",
+		"@typescript-eslint/parser": "^4.9.1",
+		"eslint": "^7.15.0",
+		"jest": "^26.6.3",
+		"ts-jest": "^26.4.4",
+		"typescript": "^4.1.3"
+	}
+}
