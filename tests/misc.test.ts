@@ -1,5 +1,19 @@
 import * as tinyvalid from '../src/tinyvalid';
 
+test('has', () => {
+    expect(tinyvalid.has({}, 'hasOwnProperty')).toBe(false);
+    expect(tinyvalid.has(Object.prototype, 'hasOwnProperty')).toBe(true);
+    expect(tinyvalid.has({}, 'name')).toBe(false);
+    expect(tinyvalid.has({ name: 'Adam' }, 'name')).toBe(true);
+    expect(tinyvalid.has({ print: () => 'Hello' }, 'print')).toBe(true);
+    expect(tinyvalid.has(null, 'address')).toBe(false);
+    expect(tinyvalid.has(undefined, 'address')).toBe(false);
+    expect(tinyvalid.has(null, 'address')).toBe(false);
+    expect(tinyvalid.has(undefined, 'address')).toBe(false);
+    expect(tinyvalid.has(false, 'hasOwnProperty')).toBe(false);
+    expect(tinyvalid.has(5, 'address')).toBe(false);
+});
+
 test('isDecimal', () => {
     expect(tinyvalid.isDecimal(null)).toBe(false);
     expect(tinyvalid.isDecimal(42)).toBe(false);

@@ -4,6 +4,7 @@ TinyValid is a Typescript written validation library providing various lightweig
 #### Table of Contents:
  - [How to use](#usage)
  - [Validators:](#validators)
+     - [has](#v_has)
 	 - [isArray](#v_is_array)
 	 - [isArrayOf](#v_is_array_of)
 	 - [isBool](#v_is_bool)
@@ -49,6 +50,18 @@ import { isEmptyString } from 'tinyvalid/validators/isEmptyString';
 
 <a name="validators"></a>
 ## Validators
+
+<a name="v_has"></a>
+#### has
+Returns true if the **object** has a property with the name **value** _(The validator is mostly a wrapper function of Object.prototype.hasOwnProperty)_
+```typescript
+has (object: any, value: string | number | symbol, nilCheck?: boolean)
+```
+|Parameter|Type|Optional|Default Value|Description|
+|--|--|--|--|--|
+|object|any|No|-|
+|value|string\|number\|symbol|No|-|
+|nilCheck|boolean|Yes|true|If set to true the validator will check first if the **object** is _null_ or _undefined_ and thus avoiding potential errors
 
 <a name="v_is_array"></a>
 #### isArray

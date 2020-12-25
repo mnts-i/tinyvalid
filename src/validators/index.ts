@@ -1,3 +1,4 @@
+export * from './has';
 export * from './isArray';
 export * from './isArrayOf';
 export * from './isBool';
