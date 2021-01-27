@@ -37,15 +37,15 @@ Install the library by running
 npm install --save tinyvalid
 ```
 
-You can then import the whole libraryQ
+You can then import the whole library:
 ```typescript
 import * from 'tinyvalid';
 ```
 or you can import only the validators you need and thus reducing your bundle's final size
 ```typescript
-import { isInteger } from 'tinyvalid/validators/isInteger';
-import { isObject } from 'tinyvalid/validators/isObject';
-import { isEmptyString } from 'tinyvalid/validators/isEmptyString';
+import { isInteger } from 'tinyvalid/dist/validators/isInteger';
+import { isObject } from 'tinyvalid/dist/validators/isObject';
+import { isEmptyString } from 'tinyvalid/dist/validators/isEmptyString';
 ```
 
 <a name="validators"></a>
