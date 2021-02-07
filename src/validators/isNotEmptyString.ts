@@ -1,8 +1,8 @@
-import { isEmptyString } from './isEmptyString';
+import { isString } from './isString';
 
 type ValidatorType = (value: any, trim?: boolean) => boolean;
 
 export const isNotEmptyString: ValidatorType =
     (value, trim = true) => { 
-        return !isEmptyString(value, trim);
+        return isString(value) && (trim ? value.trim() !== '' : value !== '');
     }

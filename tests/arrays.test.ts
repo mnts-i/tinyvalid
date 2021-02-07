@@ -18,3 +18,11 @@ test('isArrayOf', () => {
     expect(tinyvalid.isArrayOf([false, true, 1], tinyvalid.isBool)).toBe(false);
     expect(tinyvalid.isArrayOf({}, tinyvalid.isString)).toBe(false);
 });
+
+test('isNotEmptyArray', () => {
+    expect(tinyvalid.isNotEmptyArray([])).toBe(false);
+    expect(tinyvalid.isNotEmptyArray(['', 'hello', 'world', '!'])).toBe(true);
+    expect(tinyvalid.isNotEmptyArray('test')).toBe(false);
+    expect(tinyvalid.isNotEmptyArray(215)).toBe(false);
+    expect(tinyvalid.isNotEmptyArray({ property: 'test' })).toBe(false);
+});
