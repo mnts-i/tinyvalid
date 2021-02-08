@@ -1,9 +1,6 @@
 import { Predicate } from '../types';
 import { isArray } from './isArray';
 
-type ValidatorType = (value: any, predicate: Predicate) => boolean;
-
-export const isArrayOf: ValidatorType = 
-    (value, predicate) => {
+export const isArrayOf = <T extends any[] = any[]>(value: any, predicate: Predicate): value is T[] => {
         return isArray(value) && (value as any[]).findIndex(v => !predicate(v)) === -1;
     }

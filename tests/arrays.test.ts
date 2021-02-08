@@ -12,9 +12,9 @@ test('isArray', () => {
 
 test('isArrayOf', () => {
     expect(tinyvalid.isArrayOf([], tinyvalid.isString)).toBe(true);
-    expect(tinyvalid.isArrayOf(['', 'hello', 'world', '!'], tinyvalid.isString)).toBe(true);
+    expect(tinyvalid.isArrayOf<string[]>(['', 'hello', 'world', '!'], tinyvalid.isString)).toBe(true);
     expect(tinyvalid.isArrayOf(['hello', 'mr', 5], tinyvalid.isString)).toBe(false);
-    expect(tinyvalid.isArrayOf([2, 4, 6], tinyvalid.isInt)).toBe(true);
+    expect(tinyvalid.isArrayOf<number[]>([2, 4, 6], tinyvalid.isInt)).toBe(true);
     expect(tinyvalid.isArrayOf([false, true, 1], tinyvalid.isBool)).toBe(false);
     expect(tinyvalid.isArrayOf({}, tinyvalid.isString)).toBe(false);
 });

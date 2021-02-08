@@ -1,6 +1,3 @@
-type ValidatorType = (value: any) => boolean;
-
-export const isBool: ValidatorType =
-    (value) => {
+export const isBool = (value: any): value is boolean => {
         return typeof value === 'boolean';
     }

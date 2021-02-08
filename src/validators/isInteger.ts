@@ -1,6 +1,6 @@
 type ValidatorType = (value: any) => boolean;
 
-export const isInteger: ValidatorType =
+export const isInteger: ValidatorType = 
     (value) => { 
         return Number.isInteger(value);
     }

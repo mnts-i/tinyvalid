@@ -1,6 +1,3 @@
-type ValidatorType = (value: any) => boolean;
-
-export const isNumber: ValidatorType =
-    (value) => { 
+export const isNumber = (value: any): value is number => { 
         return typeof value === 'number' && !isNaN(value);
     }

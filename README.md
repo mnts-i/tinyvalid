@@ -3,11 +3,12 @@ TinyValid is a Typescript written validation library providing various lightweig
 
 #### Table of Contents:
  - [How to use](#usage)
+ - [Tip for Typescript projects](#typescript_tip)
  - [Validators:](#validators)
      - [has](#v_has)
-	 - [isArray](#v_is_array)
-	 - [isArrayOf](#v_is_array_of)
-	 - [isBool](#v_is_bool)
+	 - [:small_orange_diamond: isArray](#v_is_array)
+	 - [:small_orange_diamond: isArrayOf](#v_is_array_of)
+	 - [:small_orange_diamond: isBool](#v_is_bool)
 	 - [isDecimal](#v_is_decimal)
 	 - [isEmpty](#v_is_empty)
 	 - [isEmptyArray](#v_is_empty_array)
@@ -18,17 +19,18 @@ TinyValid is a Typescript written validation library providing various lightweig
 	 - [isInfinite](#v_is_infinite)
 	 - [isInteger / isInt](#v_is_integer)
 	 - [isNegativeInteger](#v_is_negative_integer)
-	 - [isNil](#v_is_nul)
+	 - [:small_orange_diamond: isNil](#v_is_nul)
 	 - [isNotArray](#v_is_not_array)
 	 - [isNotEmptyArray](#v_is_not_empty_array)
 	 - [isNotEmptyString](#v_is_not_empty_string)
 	 - [isNotNull](#v_is_not_null)
 	 - [isNotString](#v_is_not_string)
-	 - [isNull](#v_is_null)
+	 - [:small_orange_diamond: isNull](#v_is_null)
+	 - [:small_orange_diamond: isNumber](#v_is_number)
 	 - [isObject](#v_is_object)
 	 - [isPositiveInteger](#v_is_positive_integer)
-	 - [isString](#v_is_string)
-	 - [isUndefined](#v_is_undefined)
+	 - [:small_orange_diamond: isString](#v_is_string)
+	 - [:small_orange_diamond: isUndefined](#v_is_undefined)
 
 <a name="usage"></a>
 ## How to use
@@ -48,11 +50,43 @@ import { isObject } from 'tinyvalid/dist/validators/isObject';
 import { isEmptyString } from 'tinyvalid/dist/validators/isEmptyString';
 ```
 
+<a name="typescript_tip"></a>
+### Tip for Typescript projects
+Some of the validators make use of type-guards in order to avoid unnecessary type asserting of variables in your code (https://basarat.gitbook.io/typescript/type-system/typeguard#user-defined-type-guards). You can find which validators use type-guards by the orange diamond ( :small_orange_diamond: ) before their name.
+
+**Example of type-guards:**
+```typescript
+const username: string | undefined = Math.random() > .5 ? '   tinyuser  ': undefined;
+let trimmedUsername: string;
+
+// PREFER USING VALIDATORS WITH TYPE-GUARDING...
+
+// isString makes use of type-guards which means the typescript can understand after 
+// the validator if the variable - username - is of type string or not
+if (!isString(username)) {
+    console.log('username is not a string');
+} else {
+    trimmedUsername = username.trim();
+}
+
+// ...INSTEAD OF VALIDATORS WITHOUT TYPE-GUARDING
+
+// isNotString does NOT make use of type-guards
+if (isNotString(username)) {
+    console.log('username is not a string');
+} else {
+
+    // You'll have to assert the username's type since the compiler doesn't know after
+    // the validator if the variable - username - is a string or undefined
+    trimmedUsername = (<string>username).trim();
+}
+```
+
 <a name="validators"></a>
 ## Validators
 
 <a name="v_has"></a>
-#### has
+#### has 
 Returns true if the **object** has a property with the name **value** _(The validator is mostly a wrapper function of Object.prototype.hasOwnProperty)_
 ```typescript
 has (object: any, value: string | number | symbol, nilCheck?: boolean)
@@ -64,7 +98,7 @@ has (object: any, value: string | number | symbol, nilCheck?: boolean)
 |nilCheck|boolean|Yes|true|If set to true the validator will check first if the **object** is _null_ or _undefined_ and thus avoiding potential errors
 
 <a name="v_is_array"></a>
-#### isArray
+#### :small_orange_diamond: isArray
 Returns true if the value is an array
 ```typescript
 isArray (value: any)
@@ -74,7 +108,7 @@ isArray (value: any)
 |value|any|No|-|
 
 <a name="v_is_array_of"></a>
-#### isArrayOf
+#### :small_orange_diamond: isArrayOf
 Returns true if the value is an array and all of its items match the supplied predicate function
 ```typescript
 type Predicate: (value: any) => boolean;
@@ -108,7 +142,7 @@ const arrayOfShortStrings = isArrayOf(arr, (val) => isString(val) && val.length 
 ```
 
 <a name="v_is_bool"></a>
-#### isBool
+#### :small_orange_diamond: isBool
 Returns true if the value is a boolean
 ```typescript
 isBool (value: any)
@@ -223,7 +257,7 @@ isNegativeInteger (value: any, includeZero?: boolean)
 |includeZero|boolean|Yes|false|Returns also true if the value is zero
 
 <a name="v_is_nil"></a>
-#### isNil
+#### :small_orange_diamond: isNil
 Returns true if the value is null or undefined
 ```typescript
 isNil (value: any)
@@ -283,10 +317,20 @@ isNotString (value: any)
 |value|any|No|-|
 
 <a name="v_is_null"></a>
-#### isNull
+#### :small_orange_diamond: isNull
 Returns true if the value is null
 ```typescript
 isNull (value: any)
+```
+|Parameter|Type (Typescript)|Optional|Default Value|Description|
+|--|--|--|--|--|
+|value|any|No|-|
+
+<a name="v_is_number"></a>
+#### :small_orange_diamond: isNumber
+Returns true if the value is a number (and not NaN)
+```typescript
+isNumber (value: any)
 ```
 |Parameter|Type (Typescript)|Optional|Default Value|Description|
 |--|--|--|--|--|
@@ -315,7 +359,7 @@ isPositiveInteger (value: any, includeZero?: boolean)
 |includeZero|boolean|Yes|false|Returns also true if the value is zero
 
 <a name="v_is_string"></a>
-#### isString
+#### :small_orange_diamond: isString
 Returns true if the value is a string
 ```typescript
 isString (value: any)
@@ -325,7 +369,7 @@ isString (value: any)
 |value|any|No|-|
 
 <a name="v_is_undefined"></a>
-#### isUndefined
+#### :small_orange_diamond: isUndefined
 Returns true if the value is undefined
 ```typescript
 isUndefined (value: any)

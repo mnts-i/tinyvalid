@@ -1,6 +1,3 @@
-type ValidatorType = (value: any) => boolean;
-
-export const isArray: ValidatorType =
-    (value) => { 
+export const isArray = (value: any): value is any[] => { 
         return Array.isArray(value);
     }

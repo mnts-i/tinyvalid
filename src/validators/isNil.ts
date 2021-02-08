@@ -1,6 +1,3 @@
-type ValidatorType = (value: any) => boolean;
-
-export const isNil: ValidatorType =
-    (value) => {
+export const isNil = (value: any): value is null | undefined => {
         return value === null || typeof value === 'undefined';
     }
